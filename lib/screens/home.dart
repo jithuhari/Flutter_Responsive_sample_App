@@ -13,9 +13,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Colors.blue,
       appBar: AppBar(
         title: Text('Resposive'),
+        backgroundColor: Colors.red,
       ),
       
       body: SafeArea(
@@ -25,17 +26,24 @@ class _HomeState extends State<Home> {
             //MOBILE
             mobile: Column(
               children: [
+                SizedBox(height: MediaQuery.of(context).size.height*.05,),
                 buildContainer(),
                 buildText()
             ],
             ),
 
             //TABLET
-            tab: Row(
+            tab: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildContainer(),
-                Expanded(child: buildText())
-            ],
+                Row(
+                  children: [
+                    SizedBox(width:MediaQuery.of(context).size.width*.04 ,),
+                    buildContainer(),
+                    Expanded(child: buildText())
+                ],
+                ),
+              ],
             )
             
             ),
@@ -79,22 +87,80 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Text buildText() {
-    return Text('heiii \n\n Hello How Are Yoy? \n I AM FINE.What About YOU?................................... ',
+  Widget buildText() {
+    return Column(children: [
+      SizedBox(height:MediaQuery.of(context).size.height*.05 ,),
+      Row(
+        
+        children: [
+          
+          SizedBox(width:MediaQuery.of(context).size.width*.15 ,),
+          Column(
+            children: [
+
+              Text('Name:',
               style: TextStyle(
-                fontSize: 25
+                fontSize: 18 ,
+                fontWeight: FontWeight.bold
               ),
-              );
+              ),
+               SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+              Text('Email:',
+              style: TextStyle(
+              fontSize: 18 ,
+              fontWeight: FontWeight.bold
+              ),
+              ),
+              SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+           Text('Address:',
+            style: TextStyle(
+            fontSize: 18 ,
+            fontWeight: FontWeight.bold
+            ),
+            ),
+            SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+            ],
+          ),
+
+          SizedBox(width: MediaQuery.of(context).size.width*.1,),
+
+          Column(
+            children: [
+
+              Text('ABC',
+              style: TextStyle(
+              fontSize: 18 ,
+              fontWeight: FontWeight.bold
+              ),
+              ),
+              SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+              Text('ABC@hmail.com',
+              style: TextStyle(
+              fontSize: 18 ,
+              fontWeight: FontWeight.bold
+              ),
+              ),
+              SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+              Text('ABC Villa DEF',
+              style: TextStyle(
+              fontSize: 18 ,
+              fontWeight: FontWeight.bold
+              ),
+              ),
+              SizedBox(height:MediaQuery.of(context).size.height*.01 ,),
+            ],
+          )
+        ],
+      ),
+
+     
+    ],);
   }
 
-  Container buildContainer() {
-    return Container(
-                width:320,
-                height: 180,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(20)
-                ),
-              );
+  CircleAvatar buildContainer() {
+    return CircleAvatar(
+      radius: MediaQuery.of(context).size.height*.15,
+      backgroundImage:NetworkImage('https://images.pexels.com/photos/38537/woodland-road-falling-leaf-natural-38537.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
+      );
   }
 }
